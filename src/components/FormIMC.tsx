@@ -36,8 +36,9 @@ const FormIMC = () => {
         <input
           type="number"
           id="size"
+          required
           placeholder="Taile"
-          {...register("size", { valueAsNumber: true })}
+          {...register("size", { valueAsNumber: true ,})}
         />
         {errors.size && <p data-testid="error-size">Erreur de taille :{errors.size.message}</p>}
      
@@ -46,6 +47,7 @@ const FormIMC = () => {
           type="number"
           id="weight"
           placeholder="Poids"
+        required
           {...register("weight", { valueAsNumber: true })}
         />
        {errors.weight && (
