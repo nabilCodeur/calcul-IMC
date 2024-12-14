@@ -3,8 +3,8 @@ import userEvent from "@testing-library/user-event";
 
 const fillAndSubmitFormIMC = async (
   user: ReturnType<typeof userEvent.setup>,
-  size: string,
-  weight: string,
+  size?: string | null,
+  weight?: string | null,
 ) => {
   const inputWeight = screen.getByLabelText(/Poids en kg/i);
   const inputSize = screen.getByLabelText<HTMLInputElement>(/Taille en cm/i);
@@ -12,8 +12,8 @@ const fillAndSubmitFormIMC = async (
   const submitFormButton = screen.getByRole<HTMLButtonElement>("button", {
     name: "Valider",
   });
-  await user.type(inputSize, size);
-  await user.type(inputWeight, weight);
+  if (size) await user.type(inputSize, size);
+  if (weight) await user.type(inputWeight, weight);
   await user.click(submitFormButton);
 };
 

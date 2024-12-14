@@ -12,7 +12,6 @@ jest.mock("../../utils/calculIMC", () => ({
 describe(`${FormIMC.name} Component`, () => {
   beforeEach(() => {
     render(<FormIMC />);
-
     jest.clearAllMocks();
   });
 
@@ -89,5 +88,21 @@ describe(`${FormIMC.name} Component`, () => {
     expect(errorMessageSize).toHaveTextContent(
       "Number must be greater than or equal to 20",
     );
+  });
+  test("calculIMC should not be called if size input is empty", async () => {
+    const mockCalculIMC = jest.mocked(calculIMC);
+    const NO_SIZE_INPUT = null;
+    const WEIGHT_VALID = "60";
+    const user = userEvent.setup();
+    await fillAndSubmitFormIMC(user, NO_SIZE_INPUT, WEIGHT_VALID);
+    expect(mockCalculIMC).not.toHaveBeenCalled();
+  });
+  test("calculIMC should not be called if weight input is empty", async () => {
+    const mockCalculIMC = jest.mocked(calculIMC);
+    const NO_WEIGHT_INPUT = null;
+    const SIZE_VALID = "60";
+    const user = userEvent.setup();
+    await fillAndSubmitFormIMC(user, NO_WEIGHT_INPUT, SIZE_VALID);
+    expect(mockCalculIMC).not.toHaveBeenCalled();
   });
 });

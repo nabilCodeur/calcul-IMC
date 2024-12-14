@@ -36,22 +36,30 @@ const FormIMC = () => {
         <input
           type="number"
           id="size"
-          required
           placeholder="Taile"
-          {...register("size", { valueAsNumber: true ,})}
+          required
+          {...register("size", {
+            required: "Entrez votre taille",
+            valueAsNumber: true,
+            validate: (value) => !Number.isNaN(value) || "La taille est requise"
+          })}
         />
-        {errors.size && <p data-testid="error-size">Erreur de taille :{errors.size.message}</p>}
+        {errors.size && <p data-testid="error-size">{errors.size.message}</p>}
      
         <label htmlFor="weight">Poids en kg</label>
         <input
           type="number"
           id="weight"
           placeholder="Poids"
-        required
-          {...register("weight", { valueAsNumber: true })}
+          required
+          {...register("weight", {
+            required: "Entrez votre poids",
+            valueAsNumber: true,
+            validate: (value) => !Number.isNaN(value) || "Le poids est requis"
+          })}
         />
        {errors.weight && (
-          <p data-testid="error-weight">Erreur de poids : {errors.weight.message}</p>)}
+          <p data-testid="error-weight">{errors.weight.message}</p>)}
         <br />
         <input type="submit" value={"Valider"} />
        
