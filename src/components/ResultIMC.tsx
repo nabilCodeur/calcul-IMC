@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 
-const ResultIMC = ({ imc }) => {
-  console.log(` inside ResultIMC `);
-
+const ResultIMC = (props) => {
   useEffect(() => {
     console.log(` inside ResultIMC useEffect `);
-    console.log(imc);
-  }, [imc]);
+    console.log(props.imc);
+  }, []);
 
   return (
     <>
       <h1>Résultat du calcul</h1>
-      <div>IMC: {imc}</div>
+      <div>IMC: {props.imc}</div>
     </>
   );
 };

@@ -1,18 +1,13 @@
 import { useState } from "react";
 
-const FormIMC = ({
-  getVariables,
-}: {
-  getVariables: (size: number, weight: number) => void;
-}) => {
-  // State for size and weight
-  const [size, setSize] = useState<string>();
+const FormIMC = (props) => {
+  const [size, setSize] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
 
   // Handle form submission
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault(); // Prevents page reload
-    getVariables(size, weight);
+    props.getVariables(size, weight);
   };
 
   return (
